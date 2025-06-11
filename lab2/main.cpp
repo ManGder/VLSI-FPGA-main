@@ -19,21 +19,22 @@ int main(int argv, char** argc){
         std::printf("read benchmark file failed\n");
         return -1;
     }
-    // Solution solve = Solution();
-    // ========================================================
-    // You should finish placement algorithm in Solution class, and call your algorithm here. 
-    // Finally, don't forget to output you solution into file.
-    // ========================================================
+    
+    // 创建Solution对象并执行布局算法
+    Solution solve;
+    solve.runPlacement();
 
-    // std::string l_output_file_name(argc[2]);
-    // result = outputSolution(l_output_file_name);
+    std::string l_output_file_name(argc[2]);
+    result = outputSolution(l_output_file_name);
     if (result != 0){
         std::printf("output solution failed\n");
         return -1;
     }
+    
     glb_fpga.reportFPGA();
     reportWireLength();
     result = reportValid();
+    
     for (auto lo_inst : glb_inst_map)
         delete lo_inst.second;
     for (auto lo_net : glb_net_map)
